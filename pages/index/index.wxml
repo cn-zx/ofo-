@@ -1,14 +1,13 @@
 <!--pages/index/index.wxml-->
 <view class="container">
-  <map id="ofoMap" 
-       latitude="{{latitude}}" 
-       longitude="{{longitude}}" 
-       scale="{{scale}}" 
-       controls="{{controls}}" 
-       bindcontroltap="bindcontroltap" 
-       polyline="{{polyline}}"
-       markers="{{markers}}"
-       bindmarkertap="bindmarkertap"
-       bindregionchange="bindregionchange"
-       show-location/>
+   <map id="ofoMap" 
+   longitude="{{longitude}}" 
+   latitude="{{latitude}}" 
+   scale="{{scale}}" 
+   controls="{{controls}}" 
+   circles="{{circles}}" 
+   markers="{{markers}}" 
+   bindcontroltap="bindcontroltap" 
+   bindregionchange="bindregionchange" 
+   show-location />
 </view>
