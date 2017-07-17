@@ -5,14 +5,42 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    password:0,
+    time:9
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var self = this;
+
+    this.setData({
+      password:options.password
+    });
+
+    //开始计时
+    var time = 9;
+
+    this.timer = setInterval(function(){
+      self.setData({
+        time:--time
+      })
+      if(time <= 0){
+        clearInterval(self.timer);
+        wx.redirectTo({
+          url: '../billing/index?number='+options.number
+        })
+      }
+    },1000)
+  },
+
+  //跳转车辆保障页面
+  moveToWarn:function(){
+    clearInterval(this.timer)
+    wx.redirectTo({
+      url: '../index/index'
+    })
   },
 
   /**

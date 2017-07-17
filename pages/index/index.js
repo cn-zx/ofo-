@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scale:15,
+    scale:14,
     longitude:0,
     latitude:0
   },
@@ -16,6 +16,9 @@ Page({
   onLoad: function (options) {
     var self = this;
 
+    this.setData({
+      timer:options.timer
+    })
     //初始定位
     wx.getLocation({
       type: 'gcj02',
@@ -28,7 +31,7 @@ Page({
             latitude: res.latitude,
             color: '#000000AA',
             fillColor: '#eaadeaAA',
-            radius: 1000,
+            radius: 500,
             strokeWidth: 1
           }]
         })
@@ -94,6 +97,7 @@ Page({
       }
     });
 
+    //请求周边车辆
     this.getrequestCat();
   },
 
@@ -109,22 +113,95 @@ Page({
         })
         break;
       case 3:
+        if (this.data.timer == "" || this.data.timer == undefined){
+          wx.scanCode({
+            onlyFromCamera: false,
+            success: function(res1) {
+              wx.showLoading({
+                title: '正在获取密码',
+                mask: true
+              });
+              wx.request({
+                url: 'https://www.easy-mock.com/mock/5966e6e388b970677e52470d/local/password',
+                data: '',
+                method: 'GET',
+                success: function(res) {
+                  wx.hideLoading();
+                  wx.redirectTo({
+                    url: '../scanresult/index?number='+res.data.data.number+'&password='+res.data.data.password,
+                    success: function(res) {
+                      wx.showToast({
+                        title: '获取密码成功',
+                        duration: 1000
+                      })
+                    },
+                    fail: function(res) {
+                      wx.showToast({
+                        title: '未知错误',
+                        duration: 2000
+                      })
+                    }
+                  })
+                }
+              })
+            },
+            fail: function(res) {},
+            complete: function(res) {}
+          })
+        }else{
+          wx.navigateBack({
+            delta: 1,
+          })
+        }
+        break;
+      case 4:
+        wx.navigateTo({
+          url: '../my/index'
+        })
+        break;
+      default:break;
     }
+  },
+
+  //点击标记
+  bindmarkertap:function(e){
+    var _markers = this.data.markers;
+    var marId = e.markerId;
+    var currMarker = _markers[marId];
+    this.setData({
+      polyline:[{
+        points:[{
+          latitude:this.data.latitude,
+          longitude:this.data.longitude,
+        },{
+          latitude:currMarker.latitude,
+          longitude:currMarker.longitude
+        }],
+        color:'#ff2400aa',
+        dottedLine:true,
+        width:5
+      }],
+      scale:18
+    })
   },
 
   //移动地图触发
   bindregionchange:function(e){
-    // if(e.type=='begin'){
-    //   wx.showToast({
-    //     title: '开始拖动',
-    //     duration: 1000
-    //   })
-    // }else if(e.type == 'end'){
-    //   wx.showToast({
-    //     title: '停止拖动',
-    //     duration: 1000
-    //   })
-    // }
+    if(e.type=='begin'){
+      wx.request({
+        url: 'https://www.easy-mock.com/mock/5966e6e388b970677e52470d/local/dizhi',
+        method: 'GET',
+        success: function(res) {
+          this.setData({
+            _markers:res.data.data
+          })
+        }
+      })
+    }else if(e.type == 'end'){
+      this.setData({
+        markers:this.data._markers
+      })
+    }
   },
 
   //请求周边车辆
@@ -201,113 +278,3 @@ Page({
   
   }
 })
-// Page({
-//   data: {
-//     Height: 0,
-//     scale: 13,
-//     latitude: "",
-//     longitude: "",
-//     markers: [],
-//     controls: [{
-//       id: 1,
-//       iconPath: '/images/marker.png',
-//       position: {
-//         left: 320,
-//         top: 100 - 50,
-//         width: 20,
-//         height: 20
-//       },
-//       clickable: true
-//     },
-//     {
-//       id: 2,
-//       iconPath: '/images/markers.png',
-//       position: {
-//         left: 340,
-//         top: 100 - 50,
-//         width: 20,
-//         height: 20
-//       },
-//       clickable: true
-//     }
-//     ],
-//     circles: []
-//   },
-//   onLoad: function () {
-//     var _this = this;
-//     wx.getSystemInfo({
-//       success: function (res) {
-//         //设置map高度，根据当前设备宽高满屏显示
-//         _this.setData({
-//           view: {
-//             Height: res.windowHeight
-//           }
-//         })
-//       }
-//     })
-//     wx.getLocation({
-//       type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-//       success: function (res) {
-//         _this.setData({
-//           latitude: res.latitude,
-//           longitude: res.longitude,
-//           markers: [{
-//             id: "1",
-//             latitude: res.latitude,
-//             longitude: res.longitude,
-//             width: 50,
-//             height: 50,
-//             iconPath: "/images/location.png",
-//             title: "哪里"
-//           }],
-//           circles: [{
-//             latitude: res.latitude,
-//             longitude: res.longitude,
-//             color: '#FF0000DD',
-//             fillColor: '#7cb5ec88',
-//             radius: 3000,
-//             strokeWidth: 1
-//           }]
-//         })
-//       }
-//     })
-//   },
-//   regionchange(e) {
-//     console.log("regionchange===" + e.type);
-//     wx.showToast({
-//       title: e.type,
-//       duration: 2000
-//     })
-//   },
-//   //点击merkers
-//   markertap(e) {
-//     console.log(e.markerId)
-//     wx.showActionSheet({
-//       itemList: ["A"],
-//       success: function (res) {
-//         console.log(res.tapIndex)
-//       },
-//       fail: function (res) {
-//         console.log(res.errMsg)
-//       }
-//     })
-//   },
-//   //点击缩放按钮动态请求数据
-//   controltap(e) {
-//     var that = this;
-//     console.log("scale===" + this.data.scale)
-//     if (e.controlId === 1) {
-//       // if (this.data.scale === 13) {
-//       that.setData({
-//         scale: --this.data.scale
-//       })
-//       // }
-//     } else {
-//       //  if (this.data.scale !== 13) {
-//       that.setData({
-//         scale: ++this.data.scale
-//       })
-//       // }
-//     }
-//   },
-// })

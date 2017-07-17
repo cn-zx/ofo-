@@ -9,5 +9,7 @@
    markers="{{markers}}" 
    bindcontroltap="bindcontroltap" 
    bindregionchange="bindregionchange" 
+   bindmarkertap="bindmarkertap" 
+   polyline="{{polyline}}" 
    show-location />
 </view>
