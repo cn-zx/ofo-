@@ -1,1 +1,38 @@
-/* pages/my/index.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #c0c0c0;
+}
+.main{
+  background: #fff;
+}
+.icon-name{
+  border-bottom: 20rpx solid #c0c0c0;
+  text-align: center;
+  padding: 25rpx 0;
+}
+.icon-name image{
+  display: block;
+  position: relative;
+  left: 50%;
+  width: 160rpx;
+  height: 160rpx;
+  border: 6rpx solid #c0c0c0;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10rpx 5rpx #c0c0c0;
+  margin-bottom: 10rpx;
+}
+.icon-name text{
+  font-size: 28rpx;
+}
+.wallet{
+  padding: 30rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.footerwrap{
+  padding: 0 30rpx;
+  margin-bottom: 40rpx;
+}

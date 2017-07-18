@@ -1,1 +1,81 @@
-/* pages/warn/index.wxss */
+/* pages/billing/index.wxss */
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.checklist{
+  background-color: #fff;
+}
+.checklist .title{
+  background-color: #c0c0c0;
+  padding: 25rpx 0 25rpx 20rpx;
+  font-size: 26rpx;
+}
+.lists{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 30rpx 50rpx 50rpx 50rpx;
+}
+.listitem{
+  width: 45%;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 2rpx solid #b9dd08;
+  text-align: center;
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.main{
+  background-color: #fff;
+}
+.main .m-title{
+  background-color: #c0c0c0;
+  font-size: 26rpx;
+  padding: 20rpx 0 20rpx 30rpx;
+}
+.m-img{
+  padding: 30rpx 0 30rpx 50rpx;
+}
+.m-img image{
+  position: relative;
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 25rpx;
+  overflow: visible;
+}
+.m-img image icon.del{
+  display: inline-block;
+  position: absolute;
+  right: -20rpx;
+  top: -20rpx;
+}
+.m-img text.add{
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  border: 2rpx solid #c0c0c0;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ccc;
+  vertical-align: top;
+}
+.m-carmsg{
+  border-top: 30rpx solid #c0c0c0;
+   padding: 0 30rpx; 
+}
+.m-carmsg input{
+  font-size: 28rpx;
+  padding: 10rpx 0;
+}
+.m-carmsg input.carnumber{
+  border-bottom: 2rpx solid #c0c0c0;
+}
+.m-submits{
+  background-color: #c0c0c0;
+  padding: 30rpx;
+}
