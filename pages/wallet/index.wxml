@@ -1,2 +1,20 @@
-<!--pages/wallet/index.wxml-->
-<text>pages/wallet/index.wxml</text>
+<view class="container">
+  <view class="moneymsg">
+    <view><text>我的余额(元)</text></view>
+    <view class="money-number"><text>{{moneynumber}}</text></view>
+    <view class="balance"><text bindtap="moveTobalance">余额明细</text></view>
+  </view>
+  <button class="chargebtn" bindtap="moveTocharge">充值</button>
+  <view class="cardnumber" bindtap="cardclick">
+    <text>我的用车券</text>
+    <text><text>{{cardnumber}}张</text>></text>
+  </view>
+  <view class="deposit" bindtap="depclick">
+    <text>我的押金</text>
+    <text><text class="depositnumber">{{depositnumber}}元，押金退款</text>></text>
+  </view>
+  <view class="ofo-about" bindtap="about">
+    <text>关于ofo</text>
+    <text>></text>
+  </view>
+</view>

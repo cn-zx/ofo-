@@ -4,10 +4,10 @@
       <image src="{{userInfo.avatarUrl}}"></image>
       <text>{{userInfo.nickName}}</text>
     </view>
-    <view class="wallet" wx:if="{{userInfo.avatarUrl != ''}}" bindtap="moveTowallet">
+    <view class="wallet" wx:if="{{login}}" bindtap="moveTowallet">
       <text>我的钱包</text>
       <text>></text>
     </view>
   </view>
-  <view class="footerwrap"><button type="{{bType}}">{{activeText}}</button></view>
+  <view class="footerwrap"><button type="{{bType}}" bindtap="bindaction">{{activeText}}</button></view>
 </view>

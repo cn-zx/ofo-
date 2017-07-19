@@ -1,1 +1,29 @@
-/* pages/charge/index.wxss */
+.container{
+  display: flex;
+  flex-direction: column;
+  background: #c0c0c0;
+}
+.chargetitle{
+  background: rgb(242, 242, 242);
+  padding: 30rpx 0 30rpx 50rpx;
+  font-size: 36rpx;
+}
+.cinput{
+  background: rgb(242, 242, 242);
+  padding: 0 0 30rpx 0;
+}
+.cinput input{
+  width: 90%;
+  background: #fff;
+  margin-left: 5%;
+   text-indent: 20rpx; 
+  padding: 10rpx 6rpx;
+}
+.cbtn{
+  margin-top: 20rpx;
+}
+.cbtn button{
+  width: 90%;
+  margin-left: 5%;
+  background: rgb(172,216,0);
+}

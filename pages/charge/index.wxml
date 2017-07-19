@@ -1,2 +1,5 @@
-<!--pages/charge/index.wxml-->
-<text>pages/charge/index.wxml</text>
+<view class="container">
+  <view class="chargetitle">请输入充值金额</view>
+  <view class="cinput"><input type="number" bindinput="bindinput" placeholder="0" /></view>
+  <view class="cbtn"><button bindtap="charequest">充值</button></view>
+</view>
